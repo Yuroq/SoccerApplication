@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      margin: 100px auto;
+      width: 320px;
+      height: 240px;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .swiper-slide:nth-child(1n) {
+      background-color: rgb(206, 17, 17);
+    }
+
+    .swiper-slide:nth-child(2n) {
+      background-color: rgb(0, 140, 255);
+    }
+
+    .swiper-slide:nth-child(3n) {
+      background-color: rgb(10, 184, 111);
+    }
+
+    .swiper-slide:nth-child(4n) {
+      background-color: rgb(211, 122, 7);
+    }
+
+    .swiper-slide:nth-child(5n) {
+      background-color: rgb(118, 163, 12);
+    }
+
+    .swiper-slide:nth-child(6n) {
+      background-color: rgb(180, 10, 47);
+    }
+
+    .swiper-slide:nth-child(7n) {
+      background-color: rgb(35, 99, 19);
+    }
+
+    .swiper-slide:nth-child(8n) {
+      background-color: rgb(0, 68, 255);
+    }
+
+    .swiper-slide:nth-child(9n) {
+      background-color: rgb(218, 12, 218);
+    }
+
+    .swiper-slide:nth-child(10n) {
+      background-color: rgb(54, 94, 77);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Swiper -->
+<h6 style="font-size: 40px;color: #000;">YOO</h6>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+   
+    </div>
+  </div>
+ 
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      },
+    });
+   
+  </script>
+</body>
+
+</html>
+
+
+<script>
+    const StatsSettings = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "f8052b08b0msh617c19c65558cdap1e8739jsn659066386b7a",
+    "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+  },
+};
+    const text = document.querySelector(".Text");
+const stats = document.querySelector(".stats");
+const news = document.querySelector(".Results2");
+const results = document.querySelector(".fixtures");
+const topScorersSection = document.querySelector(".top-scorers-standings");
+const Leagues = document.querySelectorAll("h6");
+const searchInputs = document.querySelector("#userInput");
+const leaguestandings = document.querySelector(".league-standings");
+const playerCard = document.querySelector('.swiper-wrapper')
+const prem = document.querySelector('.Prem')
+const mls = document.querySelector('.mls')
+const liga = document.querySelector('.la-liga')
+const bundesliga = document.querySelector('.bundesliga')
+const navStandings = document.querySelector('.nav-standings')
+const navUpcomingFixtures = document.querySelector('.nav-Upcoming-Fixtures')
+const RecentFxtures = document.querySelector('.league-standings-recent-fixtures')
+const navRecentFixtures = document.querySelector('.nav-Recent-Fixtures')
+const spiner = document.querySelector('.lds-hourglass')
+const savedGamesSection = document.querySelector('.saved-Games')
+const savedGamesBTN = document.querySelector('.saved-games')
+    document.querySelectorAll("h6").forEach((leg) =>
+  leg.addEventListener("click", function (e) {
+let league = ''
+if (e.target == prem) {
+  league = 39
+    } if(e.target == liga) {
+      league = 140
+   } if(e.target == mls) {
+      league = 253
+    }  if(e.target == bundesliga) {
+      league = 78
+    }
+    
+    
+
+ fetch(
+      `https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=39&season=2022`,
+      StatsSettings
+    )
+      .then((response) => response.json())
+
+      .then((data) => {
+        document.querySelector('.Results').style.display = 'flex'
+        hideSavedGames()
+        data.response.slice(0,10).forEach((player) => {
+          const topScorersSliderHTML = `
+
+ 
+          <div class="swiper-slide"><img src="images/Capture.white-background.PNG" class="player-card-background"
+            style="width: 100%; height: 240px;">
+            <div class="player-card">
+              
+            <img src="${player.player.photo}" class="player-card-image">
+
+            <h3>10</h3>
+            <h5>${player.statistics[0].games.position}</h5>
+            <img src="${player.statistics[0].league.flag}" class="player-card-flagLogo">
+            <img src="${player.statistics[0].team.logo}" class="player-card-teamLogo">
+            <!-- <img src="${player.statistics[0].league.flag}" class="player-card-flagLogo">
+            <img src="${player.statistics[0].team.logo}" class="player-card-teamLogo"> -->
+          </div>
+          <h2 style="text-align: center;">${player.player.name}</h2>
+          <div class="container2">
+            
+            <div class="section">
+             
+              <h2 style="font-size: 22px;margin-left: 33px;">Goals:<span style="position: absolute;left:140px;">${player.statistics[0].goals.total}</span></h2>
+            <h2 style="font-size: 22px;margin-left: 33px;">Assists:<span style="position: absolute;left:140px;">${player.statistics[0].goals.assists}</span></h2>
+            <h2 style="font-size: 22px;margin-left: 33px;">Rating:<span style="position: absolute;left:140px;">${player.statistics[0].games.rating.slice(0,3)}</span></h2>
+            </div>
+            <div class="section">
+            <h2 style="font-size: 22px;margin-left: 33px;">Shots: <span style="position: absolute;left:340px;">${player.statistics[0].shots.total}</span></h2>
+              <h2 style="font-size: 22px;margin-left: 33px;">Apps:<span style="position: absolute;left:340px;">${player.statistics[0].games.appearences}</span></h2>
+            <h2 style="font-size: 22px;margin-left: 33px;">Cards:<span style="position: absolute;left:340px;">${player.statistics[0].cards.yellow}</span></h2>
+
+            </div>
+          </div>
+           
+          
+          </div>
+</div>
+</div>
+
+      
+      `;
+          playerCard.insertAdjacentHTML("beforeend", topScorersSliderHTML);
+
+          const topScorersHTML = `
+          <li class ="scorersList">
+          <div class="goal-standings">
+            
+          <h2 style="color:white">${player.player.name}</h2>
+          <img src="${player.statistics[0].team.logo}" class="Goal-standings-team-logo">
+          <p class="goal-standings-team">${player.statistics[0].team.name}</p>
+          <img src="${player.statistics[0].league.flag}" class="Goal-standings-country-logo">
+          <p class="goal-standings-country">${player.player.nationality}</p>
+          <p class="goal-standings-goals">${player.statistics[0].goals.total}</p>
+   
+        </div>
+        </li>
+        <hr class="goal-standings-line">
+          `
+          topScorersSection.insertAdjacentHTML('beforeend',topScorersHTML)  
+          
+        });
+   
+      })
+      
+    }))
+
+</script>
