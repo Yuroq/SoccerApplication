@@ -13,7 +13,7 @@ const bottomSection = document.querySelector(".gfg2");
 const spinner = document.getElementById("spinner");
 const dataContainer = document.getElementById("data");
 const spiner = document.querySelector('.lds-hourglass')
-document.body.style.zoom="67%"
+
 // function showSpinner() {
 //   spinner.style.display = 'block';
 // }
