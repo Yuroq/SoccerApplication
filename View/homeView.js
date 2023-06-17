@@ -26,7 +26,7 @@ const navRecentFixtures = document.querySelector('.nav-Recent-Fixtures')
 const spiner = document.querySelector('.lds-hourglass')
 const savedGamesSection = document.querySelector('.saved-Games')
 const savedGamesBTN = document.querySelector('.saved-games')
-
+document.body.style.zoom="67%"
 let league = ''
 searchInputs.addEventListener('click', function(){
   location.href = "searchViewPage.html";
@@ -40,7 +40,7 @@ document.querySelector("#userInput").addEventListener("keydown", function (e) {
   }
 });
 document.querySelector('#log_out').addEventListener('click', function() {
-  location.href = "LogInPage.html"; 
+  location.href = "index.html"; 
 })
 const data = null;
 
