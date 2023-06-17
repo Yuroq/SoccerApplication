@@ -13,7 +13,7 @@ const bottomSection = document.querySelector(".gfg2");
 const spinner = document.getElementById("spinner");
 const dataContainer = document.getElementById("data");
 const spiner = document.querySelector('.lds-hourglass')
-
+document.body.style.zoom="67%"
 // function showSpinner() {
 //   spinner.style.display = 'block';
 // }
@@ -24,13 +24,13 @@ const spiner = document.querySelector('.lds-hourglass')
 
 let team = ''
 document.querySelector('.accordion-header').addEventListener('click', function() {
-  location.href = "index.html"
+  location.href = "Home.html"
 })
 document.querySelector(".logo_name").addEventListener("click", function () {
-  location.href = "index.html";
+  location.href = "Home.html";
 });
 document.querySelector('#log_out').addEventListener('click', function() {
-  location.href = "LogInPage.html"; 
+  location.href = "index.html"; 
 })
 const ApiSettings = {
   method: "GET",
